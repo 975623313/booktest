@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.an.mapper.InfoMapper">
+
+	<select id="findAllInfo" resultType="com.an.pojo.Infos">
+	
+		select * from info order by orderInfo asc
+	
+	</select>
+<insert id="addInfos" parameterType="com.an.pojo.Infos">
+	INSERT INTO `info`(`infoId`,`orderInfo`,`systemInfo`) VALUES (DEFAULT,#{orderInfo}, #{systemInfo});
+
+</insert>
+
+<delete id="deleteInfos" parameterType="int">
+
+	delete from info where infoId=#{0}
+</delete>
+<select id="findById" parameterType="int" resultType="com.an.pojo.Infos">
+
+select * from info where infoId=#{0}
+
+</select>
+
+
+
+<update id="updateInfo" parameterType="com.an.pojo.Infos" >	
+update info set orderInfo=#{orderInfo},systemInfo=#{systemInfo} where infoId=#{infoId}
+		
+	</update>
+
+
+</mapper>

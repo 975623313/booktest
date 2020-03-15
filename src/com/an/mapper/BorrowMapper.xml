@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.an.mapper.BorrowMapper">
+
+	<insert id="insertBorrow" parameterType="com.an.pojo.Borrows">
+		INSERT INTO
+		`borrow`(`borrowId`,`bookName`, `readerName`,
+		`borrowDate`,`returnDate`, `borrowStatus`,`expireDate`)
+		VALUES
+		(#{borrowId},#{bookName},#{readerName},#{borrowDate},#{returnDate},#{borrowStatus},#{expireDate});
+
+
+	</insert>
+
+
+	<select id="findBorrowById" parameterType="int" resultType="com.an.pojo.Borrows">
+
+		select * from borrow where borrowId=#{0}
+	</select>
+	<delete id="returnBook" parameterType="String">
+
+		delete from borrow where
+		bookName=#{0}
+
+
+	</delete>
+
+	<update id="updateDate" parameterType="com.an.pojo.Borrows">
+		update borrow set
+		expireDate=#{expireDate}
+	</update>
+	<select id="findAllBorrow" resultType="com.an.pojo.Borrows">
+
+		select * from borrow
+
+	</select>
+	<select id="findBookCount" parameterType="int" resultType="int">
+
+		SELECT COUNT(*) FROM borrow where borrowId=#{0}
+
+	</select>
+
+	<update id="updateReturnDate" parameterType="com.an.pojo.Borrows">
+		update borrow set returnDate=#{returnDate} where
+		borrowId=#{borrowId}
+
+	</update>
+
+</mapper>

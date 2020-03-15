@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.an.mapper.RuleMapper">
+<select id="findAllRule" resultType="com.an.pojo.Rules">
+
+	select * from rule order by orderRule asc
+
+</select>
+
+<insert id="addRules" parameterType="com.an.pojo.Rules">
+
+	INSERT INTO `rule`(`ruleId`, `ruleContent`, `orderRule`) VALUES (DEFAULT,#{ruleContent}, #{orderRule});
+
+</insert>
+<delete id="deleteRules" parameterType="int">
+
+	delete from rule where ruleId=#{0}
+</delete>
+<select id="findById" parameterType="int" resultType="com.an.pojo.Rules">
+	select * from rule where ruleId=#{0}
+</select>
+
+
+
+<update id="updateRule" parameterType="com.an.pojo.Rules" >	
+update rule set ruleContent=#{ruleContent},orderRule=#{orderRule} where ruleId=#{ruleId}
+		
+	</update>
+
+
+
+</mapper>

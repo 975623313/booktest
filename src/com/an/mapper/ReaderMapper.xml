@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.an.mapper.ReaderMapper">
+
+	<select id="findAllReader" resultType="com.an.pojo.Readers">
+
+		select * from reader
+
+
+	</select>
+
+
+	<insert id="addReader" parameterType="com.an.pojo.Readers">
+
+		INSERT INTO
+		`reader`(`readerId`, `readerName`, `readerAddress`,
+		`readerContact`,
+		`account`, `password`, `borrowId`, `returnId`,
+		`punishId`, `statusCode`) VALUES
+		(DEFAULT,#{readerName},#{readerAddress},#{readerContact},#{account},#{password},#{borrowId},#{returnId},#{punishId},100);
+	</insert>
+	
+	
+	<select id="findReaderByName" parameterType="String" resultType="com.an.pojo.Readers">
+	
+		select * from reader where readerName=#{0}
+	
+	
+	</select>
+	<select id="findReaderById" parameterType="int" resultType="com.an.pojo.Readers">
+	
+		select * from reader where readerId=#{0}
+	
+	
+	</select>
+	<update id="updateOtherId" parameterType="com.an.pojo.Readers" >	
+		update reader set borrowId=#{borrowId},returnId=#{returnId},punishId=#{punishId} where readerId=#{readerId}
+	</update>
+	
+	<delete id="deleteReader" parameterType="int">	
+		delete from reader where readerId=#{0}
+	</delete>
+	
+	
+	<select id="loginFind" parameterType="String" resultType="com.an.pojo.Readers">
+	
+		select * from reader where account=#{0} and password=#{1}
+	
+	
+	</select>
+
+
+
+</mapper>
